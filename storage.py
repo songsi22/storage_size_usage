@@ -32,7 +32,7 @@ Passwd = 'abcd123'
 Server = 'smtp.gmail.com'
 Port = 587
 Subject = '스토리지 사용량 ' + str(today.month) + '월'
-
+allUser = ToUser + CcUser
 def send_email(from_user, to_user, cc_users, subject, textfile, attach):
     COMMASPACE = ', '
     msg = MIMEMultipart('alternative')
@@ -57,7 +57,7 @@ def send_email(from_user, to_user, cc_users, subject, textfile, attach):
         try:
             smtp.starttls()
             smtp.login(FromUser, Passwd)
-            smtp.sendmail(from_user, cc_users, msg.as_string())
+            smtp.sendmail(from_user, allUser, msg.as_string())
             print("[OK] send mail")
             post_message(slack_token, channel_name, '메일 전송 완료')
         except Exception as e:
