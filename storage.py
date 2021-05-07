@@ -94,8 +94,9 @@ ds8870_sum_loc = str(len(df_usage) + 2)
 ds8700_sum_loc = str(len(df_usage) + 3)
 ds8870_merge = 'A' + ds8870_sum_loc + ':B' + ds8870_sum_loc
 ds8700_merge = 'A' + ds8700_sum_loc + ':B' + ds8700_sum_loc
-WS['C' + ds8870_sum_loc] = '=SUMIF(A2:A38,"DS8870",C2:C38)/1000&" TB"'
-WS['C' + ds8700_sum_loc] = '=SUMIF(A2:A38,"DS8700",C2:C38)/1000&" TB"'
+last_loc = str(len(df_usage) + 1)
+WS['C' + ds8870_sum_loc] = '=SUMIF(A2:A'+last_loc+',"DS8870",C2:C'+last_loc+')/1000&" TB"'
+WS['C' + ds8700_sum_loc] = '=SUMIF(A2:A'+last_loc+',"DS8700",C2:C'+last_loc+')/1000&" TB"'
 WS['C' + ds8870_sum_loc].fill = yellowFill
 WS['C' + ds8700_sum_loc].fill = yellowFill
 WS.merge_cells(ds8870_merge)
